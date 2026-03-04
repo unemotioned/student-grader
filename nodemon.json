@@ -2,7 +2,7 @@
   "watch": ["src"],
   "ext": "cpp",
   "ignore": [],
-  "exec": "./execute.sh",
+  "exec": "make && ./build/main.exe",
   "events": {
     "start": "clear"
   }
