@@ -37,7 +37,3 @@ Run the executable:
 ```sh
 ./build/main.exe
 ```
-
----
-
-### Happy Hacking 🎉
