@@ -21,6 +21,7 @@ Simple **C++** project to practice **OOP**.
 - [ ] Print in table style
 - [ ] Output JSON
 - [x] Refactor
+- [ ] Use Malloc
 - [ ] Draw flow chart
 
 ---
@@ -47,6 +48,13 @@ After making changes to source codes.
 make
 
 ./build/main
+```
+
+### Force Rebuild
+
+```sh
+# --always-make
+make -B
 ```
 
 ---
