@@ -18,6 +18,7 @@ using std::exception;
 using std::ifstream;
 using std::istringstream;
 using std::runtime_error;
+using std::string;
 using std::vector;
 
 bool read_students(vector<Student> &students) {
