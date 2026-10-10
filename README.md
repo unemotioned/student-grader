@@ -1,6 +1,6 @@
 # Student Grader
 
-Simple **C++** project to practice **OOP**.
+Simple **C++** project to practice **OOP** and **Malloc**.
 
 ## Features
 

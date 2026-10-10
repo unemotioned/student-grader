@@ -6,7 +6,6 @@
 #include "../include/student.h"
 
 using std::cout;
-using std::endl;
 using std::swap;
 using std::vector;
 
@@ -34,5 +33,5 @@ void bubble_sort(vector<Student> &students) {
         }
     }
 
-    cout << "Sorted high to low" << "\n" << endl;
+    cout << "Sorted high to low" << "\n\n";
 }

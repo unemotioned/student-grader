@@ -13,7 +13,6 @@
 
 using std::cerr;
 using std::cout;
-using std::endl;
 using std::exception;
 using std::ifstream;
 using std::istringstream;
@@ -48,13 +47,13 @@ bool read_students(vector<Student> &students) {
         ifs.close();
 
         if (students.empty()) {
-            cerr << "Error: " << STUDENTS_FILE << " is empty." << endl;
+            cerr << "Error: " << STUDENTS_FILE << " is empty.\n";
         } else {
             is_read = true;
-            cout << "Successfully read: " << STUDENTS_FILE << "\n" << endl;
+            cout << "Successfully read: " << STUDENTS_FILE << "\n\n";
         }
     } catch (const exception &e) {
-        cerr << "Error: " << e.what() << endl;
+        cerr << "Error: " << e.what() << '\n';
     }
 
     return is_read;

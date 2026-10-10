@@ -6,10 +6,10 @@
 #include "../include/student.h"
 
 using std::cout;
-using std::endl;
 using std::round;
+using std::vector;
 
-void grade_students(std::vector<Student> &students) {
+void grade_students(vector<Student> &students) {
     // use reference to modify original values
     for (Student &student : students) {
         student.tot = student.kor + student.eng + student.math;
@@ -30,5 +30,5 @@ void grade_students(std::vector<Student> &students) {
         }
     }
 
-    cout << "Grades assigned" << "\n" << endl;
+    cout << "Grades assigned" << "\n\n";
 }

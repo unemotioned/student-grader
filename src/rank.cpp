@@ -1,5 +1,6 @@
 #include <vector>
 
+#include "../include/rank.h"
 #include "../include/student.h"
 
 using std::vector;
