@@ -9,11 +9,11 @@
 
 [[nodiscard]]
 std::vector<int> get_longest_cell_len(std::vector<Student> &students);
-std::string gen_table_head(std::vector<int> &lens, int size);
-std::string gen_row(std::vector<int> &lens, int size, Student s);
-std::string gen_table_hr(std::vector<int> &lens, int size);
-std::string gen_border_top(std::vector<int> &lens, int size);
-std::string gen_border_bot(std::vector<int> &lens, int size);
+std::string gen_table_head(std::vector<int> &lens);
+std::string gen_row(std::vector<int> &lens, Student s);
+std::string gen_table_hr(std::vector<int> &lens);
+std::string gen_border_top(std::vector<int> &lens);
+std::string gen_border_bot(std::vector<int> &lens);
 
 const std::string TH_NUM = "No.";
 const std::string TH_NAME = "Name";
@@ -27,25 +27,23 @@ const std::string TH_RANK = "Rank";
 
 void print_table(std::vector<Student> &students) {
     std::vector<int> longest_cell_lengths = get_longest_cell_len(students);
-    const int col_cnt = longest_cell_lengths.size();
 
-    std::cout << gen_border_top(longest_cell_lengths, col_cnt) << '\n';
-    std::cout << gen_table_head(longest_cell_lengths, col_cnt) << '\n';
-    std::cout << gen_table_hr(longest_cell_lengths, col_cnt) << '\n';
+    std::cout << gen_border_top(longest_cell_lengths) << '\n';
+    std::cout << gen_table_head(longest_cell_lengths) << '\n';
+    std::cout << gen_table_hr(longest_cell_lengths) << '\n';
 
     for (size_t i = 0; i < students.size(); i++) {
-        std::cout << gen_row(longest_cell_lengths, col_cnt, students[i])
-                  << '\n';
+        std::cout << gen_row(longest_cell_lengths, students[i]) << '\n';
 
         if (i != students.size() - 1) {
-            std::cout << gen_table_hr(longest_cell_lengths, col_cnt) << '\n';
+            std::cout << gen_table_hr(longest_cell_lengths) << '\n';
         }
     }
 
-    std::cout << gen_border_bot(longest_cell_lengths, col_cnt) << '\n';
+    std::cout << gen_border_bot(longest_cell_lengths) << '\n';
 }
 
-std::string gen_row(std::vector<int> &lens, int size, Student s) {
+std::string gen_row(std::vector<int> &lens, Student s) {
     std::string grade;
     grade.push_back(s.getGrade());
 
@@ -71,7 +69,7 @@ std::string gen_row(std::vector<int> &lens, int size, Student s) {
 
     std::string header = BOX_V;
 
-    for (int j = 0; j < size; j++) {
+    for (size_t j = 0; j < lens.size(); j++) {
         int extra = lens[j] - cell_len[j];
         int padding = (extra) / 2;
         int remainder = (extra) % 2;
@@ -84,7 +82,7 @@ std::string gen_row(std::vector<int> &lens, int size, Student s) {
             header.append(" ");
         }
 
-        if (j != size - 1) {
+        if (j != lens.size() - 1) {
             header.append(BOX_V);
         }
     }
@@ -93,7 +91,7 @@ std::string gen_row(std::vector<int> &lens, int size, Student s) {
     return header;
 }
 
-std::string gen_table_head(std::vector<int> &lens, int size) {
+std::string gen_table_head(std::vector<int> &lens) {
     const std::string headers[] = {
         TH_NUM, TH_NAME, TH_KOR,   TH_ENG,  TH_MATH,
         TH_TOT, TH_AVG,  TH_GRADE, TH_RANK,
@@ -107,7 +105,7 @@ std::string gen_table_head(std::vector<int> &lens, int size) {
 
     std::string header = BOX_V;
 
-    for (int j = 0; j < size; j++) {
+    for (size_t j = 0; j < lens.size(); j++) {
         int extra = lens[j] - header_lengths[j];
         int padding = (extra) / 2;
         int remainder = (extra) % 2;
@@ -120,7 +118,7 @@ std::string gen_table_head(std::vector<int> &lens, int size) {
             header.append(" ");
         }
 
-        if (j != size - 1) {
+        if (j != lens.size() - 1) {
             header.append(BOX_V);
         }
     }
@@ -129,14 +127,14 @@ std::string gen_table_head(std::vector<int> &lens, int size) {
     return header;
 }
 
-std::string gen_table_hr(std::vector<int> &lens, int size) {
+std::string gen_table_hr(std::vector<int> &lens) {
     std::string border_top = BOX_LT;
 
-    for (int i = 0; i < size; i++) {
-        for (int k = 0; k < lens[i]; k++) {
+    for (size_t j = 0; j < lens.size(); j++) {
+        for (int k = 0; k < lens[j]; k++) {
             border_top.append(BOX_H);
         }
-        if (i < size - 1) {
+        if (j < lens.size() - 1) {
             border_top.append(BOX_CR);
         }
     }
@@ -145,14 +143,14 @@ std::string gen_table_hr(std::vector<int> &lens, int size) {
     return border_top;
 }
 
-std::string gen_border_bot(std::vector<int> &lens, int size) {
+std::string gen_border_bot(std::vector<int> &lens) {
     std::string border_top = BOX_BL;
 
-    for (int i = 0; i < size; i++) {
-        for (int k = 0; k < lens[i]; k++) {
+    for (size_t j = 0; j < lens.size(); j++) {
+        for (int k = 0; k < lens[j]; k++) {
             border_top.append(BOX_H);
         }
-        if (i < size - 1) {
+        if (j < lens.size() - 1) {
             border_top.append(BOX_BT);
         }
     }
@@ -161,14 +159,14 @@ std::string gen_border_bot(std::vector<int> &lens, int size) {
     return border_top;
 }
 
-std::string gen_border_top(std::vector<int> &lens, int size) {
+std::string gen_border_top(std::vector<int> &lens) {
     std::string border_top = BOX_TL;
 
-    for (int i = 0; i < size; i++) {
-        for (int k = 0; k < lens[i]; k++) {
+    for (size_t j = 0; j < lens.size(); j++) {
+        for (int k = 0; k < lens[j]; k++) {
             border_top.append(BOX_H);
         }
-        if (i < size - 1) {
+        if (j < lens.size() - 1) {
             border_top.append(BOX_TT);
         }
     }

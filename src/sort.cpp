@@ -5,13 +5,13 @@
 #include "../include/student.hpp"
 
 void bubble_sort(std::vector<Student> &students) {
-    int n = students.size();
+    int size = students.size();
     bool swapped = false;
 
-    for (int j = 0; j < n - 1; j++) {
+    for (int j = 0; j < size - 1; j++) {
         swapped = false;
 
-        for (int k = 0; k < n - j - 1; k++) {
+        for (int k = 0; k < size - j - 1; k++) {
             // high to low
             if (students[k].getTot() < students[k + 1].getTot()) {
                 // Student tmp = students[k];
