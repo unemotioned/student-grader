@@ -25,7 +25,6 @@ const std::string TH_AVG = "Average";
 const std::string TH_GRADE = "Grade";
 const std::string TH_RANK = "Rank";
 
-// TODO: Find out how to find out where to put the `BOX_H`
 void print_table(std::vector<Student> &students) {
     std::vector<int> longest_cell_lengths = get_longest_cell_len(students);
     const int col_cnt = longest_cell_lengths.size();
@@ -134,8 +133,11 @@ std::string gen_table_hr(std::vector<int> &lens, int size) {
     std::string border_top = BOX_LT;
 
     for (int i = 0; i < size; i++) {
-        for (int k = 0; k < lens[k]; k++) {
+        for (int k = 0; k < lens[i]; k++) {
             border_top.append(BOX_H);
+        }
+        if (i < size - 1) {
+            border_top.append(BOX_CR);
         }
     }
 
@@ -147,8 +149,11 @@ std::string gen_border_bot(std::vector<int> &lens, int size) {
     std::string border_top = BOX_BL;
 
     for (int i = 0; i < size; i++) {
-        for (int k = 0; k < lens[k]; k++) {
+        for (int k = 0; k < lens[i]; k++) {
             border_top.append(BOX_H);
+        }
+        if (i < size - 1) {
+            border_top.append(BOX_BT);
         }
     }
 
@@ -160,8 +165,11 @@ std::string gen_border_top(std::vector<int> &lens, int size) {
     std::string border_top = BOX_TL;
 
     for (int i = 0; i < size; i++) {
-        for (int k = 0; k < lens[k]; k++) {
+        for (int k = 0; k < lens[i]; k++) {
             border_top.append(BOX_H);
+        }
+        if (i < size - 1) {
+            border_top.append(BOX_TT);
         }
     }
 

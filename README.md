@@ -18,7 +18,7 @@ Simple **C++** project to practice **OOP** and **Malloc**.
 - [x] Sort
 - [x] Rank
 - [ ] Calculate class statistics
-- [ ] Print in table style
+- [x] Print in table style
 - [ ] Output JSON
 - [x] Refactor
 - [ ] Use Malloc
