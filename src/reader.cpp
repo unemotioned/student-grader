@@ -7,18 +7,17 @@
 #include <string>
 #include <vector>
 
-#include "../include/config.hpp"
 #include "../include/reader.h"
 #include "../include/student.hpp"
 
-bool read_students(std::vector<Student> &students) {
+std::vector<Student> read_students(const std::string file) {
     std::ifstream ifs;
-    bool is_read = false;
+    std::vector<Student> students;
 
     try {
-        ifs.open(STUDENTS_FILE);
+        ifs.open(file);
         if (!ifs.is_open()) {
-            throw std::runtime_error("Failed to open: " + STUDENTS_FILE);
+            throw std::runtime_error("Failed to open: " + file);
         }
 
         int num, kor, eng, math;
@@ -40,14 +39,13 @@ bool read_students(std::vector<Student> &students) {
         ifs.close();
 
         if (students.empty()) {
-            std::cerr << "Error: " << STUDENTS_FILE << " is empty.\n";
+            std::cerr << "Error: " << file << " is empty.\n";
         } else {
-            is_read = true;
-            std::cout << "Successfully read: " << STUDENTS_FILE << "\n\n";
+            std::cout << "Successfully read: " << file << "\n\n";
         }
     } catch (const std::exception &e) {
         std::cerr << "Error: " << e.what() << '\n';
     }
 
-    return is_read;
+    return students;
 }

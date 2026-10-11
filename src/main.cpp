@@ -2,6 +2,7 @@
 
 #include <vector>
 
+#include "../include/config.hpp"
 #include "../include/print.h"
 #include "../include/rank.h"
 #include "../include/reader.h"
@@ -10,12 +11,11 @@
 #include "../include/student.hpp"
 #include "../include/terminal.hpp"
 
-std::vector<Student> students;
-
 int main() {
     clear_term();
 
-    if (!read_students(students)) {
+    std::vector<Student> students = read_students(STUDENTS_FILE);
+    if (students.empty()) {
         return 1;
     }
 

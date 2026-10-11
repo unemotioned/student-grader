@@ -1,7 +1,8 @@
 #pragma once
 
+#include <string>
 #include <vector>
 
 #include "student.hpp"
 
-bool read_students(std::vector<Student> &students);
+std::vector<Student> read_students(const std::string file);
