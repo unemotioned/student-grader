@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "../include/box_chars.hpp"
-#include "../include/print_info.h"
+#include "../include/print.h"
 #include "../include/student.hpp"
 
 [[nodiscard]]
@@ -26,7 +26,7 @@ const std::string TH_GRADE = "Grade";
 const std::string TH_RANK = "Rank";
 
 // TODO: Find out how to find out where to put the `BOX_H`
-void print_students_info(std::vector<Student> &students) {
+void print_table(std::vector<Student> &students) {
     std::vector<int> longest_cell_lengths = get_longest_cell_len(students);
     const int col_cnt = longest_cell_lengths.size();
 

@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "../include/print_info.h"
+#include "../include/print.h"
 #include "../include/rank.h"
 #include "../include/reader.h"
 #include "../include/sort.h"
@@ -24,7 +24,7 @@ int main() {
     assign_ranks(students);
     std::cout << "Ranks assigned\n\n";
 
-    print_students_info(students);
+    print_table(students);
 
     return 0;
 }

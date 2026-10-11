@@ -7,4 +7,4 @@
 
 #include "student.hpp"
 
-void print_students_info(std::vector<Student> &students);
+void print_table(std::vector<Student> &students);
