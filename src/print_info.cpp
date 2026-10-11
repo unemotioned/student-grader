@@ -10,6 +10,7 @@
 [[nodiscard]]
 std::vector<int> get_longest_cell_len(std::vector<Student> &students);
 std::string gen_table_head(std::vector<int> &lens, int size);
+std::string gen_row(std::vector<int> &lens, int size, Student s);
 std::string gen_table_hr(std::vector<int> &lens, int size);
 std::string gen_border_top(std::vector<int> &lens, int size);
 std::string gen_border_bot(std::vector<int> &lens, int size);
@@ -34,14 +35,8 @@ void print_students_info(std::vector<Student> &students) {
     std::cout << gen_table_hr(longest_cell_lengths, col_cnt) << '\n';
 
     for (size_t i = 0; i < students.size(); i++) {
-        std::string table_row = std::format(
-            "{} {} {} {} {} {} {} {} {}\n", students[i].getNum(),
-            students[i].getName(), students[i].getKor(), students[i].getEng(),
-            students[i].getMath(), students[i].getTot(), students[i].getAvg(),
-            students[i].getGrade(), students[i].getRank()
-
-        );
-        std::cout << table_row;
+        std::cout << gen_row(longest_cell_lengths, col_cnt, students[i])
+                  << '\n';
 
         if (i != students.size() - 1) {
             std::cout << gen_table_hr(longest_cell_lengths, col_cnt) << '\n';
@@ -49,6 +44,54 @@ void print_students_info(std::vector<Student> &students) {
     }
 
     std::cout << gen_border_bot(longest_cell_lengths, col_cnt) << '\n';
+}
+
+std::string gen_row(std::vector<int> &lens, int size, Student s) {
+    std::string grade;
+    grade.push_back(s.getGrade());
+
+    std::string cells[] = {
+        std::to_string(s.getNum()),    s.getName(),
+        std::to_string(s.getKor()),    std::to_string(s.getEng()),
+        std::to_string(s.getMath()),   std::to_string(s.getTot()),
+        std::format("{}", s.getAvg()), grade,
+        std::to_string(s.getRank()),
+    };
+
+    int cell_len[] = {
+        (int)std::to_string(s.getNum()).length(),
+        (int)s.getName().size(),
+        (int)std::to_string(s.getKor()).length(),
+        (int)std::to_string(s.getEng()).length(),
+        (int)std::to_string(s.getMath()).length(),
+        (int)std::to_string(s.getTot()).length(),
+        (int)std::format("{}", s.getAvg()).length(),
+        1,
+        (int)std::to_string(s.getRank()).length(),
+    };
+
+    std::string header = BOX_V;
+
+    for (int j = 0; j < size; j++) {
+        int extra = lens[j] - cell_len[j];
+        int padding = (extra) / 2;
+        int remainder = (extra) % 2;
+
+        for (int k = 0; k < padding; k++) {
+            header.append(" ");
+        }
+        header.append(cells[j]);
+        for (int k = 0; k < padding + remainder; k++) {
+            header.append(" ");
+        }
+
+        if (j != size - 1) {
+            header.append(BOX_V);
+        }
+    }
+
+    header.append(BOX_V);
+    return header;
 }
 
 std::string gen_table_head(std::vector<int> &lens, int size) {
@@ -66,10 +109,11 @@ std::string gen_table_head(std::vector<int> &lens, int size) {
     std::string header = BOX_V;
 
     for (int j = 0; j < size; j++) {
-        int extra = lens[j] + 1 - header_lengths[j];
+        int extra = lens[j] - header_lengths[j];
         int padding = (extra) / 2;
+        int remainder = (extra) % 2;
 
-        for (int k = 0; k < padding; k++) {
+        for (int k = 0; k < padding + remainder; k++) {
             header.append(" ");
         }
         header.append(headers[j]);
