@@ -1,8 +1,8 @@
 # compiler to use
 CXX = g++
 # enable common and additional warnings
-# compile using c++17 standard
-CXXFLAGS = -Wall -Wextra -std=c++17
+# compile using c++20 standard
+CXXFLAGS = -Wall -Wextra -std=c++20
 
 # SRC = src/main.cpp src/bubble_sort.cpp src/print_info.cpp # dependencies
 SRC = $(wildcard src/*.cpp)
@@ -21,7 +21,7 @@ $(TARGET): $(SRC)
     # $^: all dependencies
 	$(CXX) $(CXXFLAGS) -o $@ $^
     # expands to:
-    # g++ -Wall -Wextra -std=c++17 -o build/main src/main.cpp
+    # g++ -Wall -Wextra -std=c++20 -o build/main src/main.cpp
 
 # runs on `make clean` command
 clean:

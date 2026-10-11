@@ -28,10 +28,12 @@ Simple **C++** project to practice **OOP** and **Malloc**.
 
 ## Compile and Run
 
+Requires a C++20 compiler and standard library with `std::format` support.
+
 ```sh
 mkdir -p build
 
-g++ ./src/main.cpp -o ./build/main
+g++ -std=c++20 ./src/*.cpp -o ./build/main
 
 ./build/main
 ```
