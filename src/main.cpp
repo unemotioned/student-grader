@@ -6,6 +6,7 @@
 #include "../include/rank.h"
 #include "../include/reader.h"
 #include "../include/sort.h"
+#include "../include/statistic.h"
 #include "../include/student.hpp"
 #include "../include/terminal.hpp"
 
@@ -25,6 +26,8 @@ int main() {
     std::cout << "Ranks assigned\n\n";
 
     print_table(students);
+
+    class_statistic(students);
 
     return 0;
 }
