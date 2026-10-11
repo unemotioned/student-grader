@@ -19,9 +19,9 @@ void print_students_info(std::vector<Student> &students) {
     std::string th_grade = "Grade";
     std::string th_rank = "Rank";
 
-    std::string table_header =
-        std::format("{} | {} | {} | {} | {} | {} | {} | {} | {}", th_num, th_name,
-               th_kor, th_eng, th_math, th_tot, th_avg, th_grade, th_rank);
+    std::string table_header = std::format(
+        "{} | {} | {} | {} | {} | {} | {} | {} | {}", th_num, th_name, th_kor,
+        th_eng, th_math, th_tot, th_avg, th_grade, th_rank);
 
     std::cout << table_header << '\n';
 
@@ -33,8 +33,9 @@ void print_students_info(std::vector<Student> &students) {
 
     for (Student &s : students) {
         std::string table_row =
-            std::format("{} {} {} {} {} {} {} {} {}\n", s.num, s.name, s.kor,
-                        s.eng, s.math, s.tot, s.avg, s.grade, s.rank
+            std::format("{} {} {} {} {} {} {} {} {}\n", s.getNum(), s.getName(),
+                        s.getKor(), s.getEng(), s.getMath(), s.getTot(),
+                        s.getAvg(), s.getGrade(), s.getRank()
 
             );
         std::cout << table_row;

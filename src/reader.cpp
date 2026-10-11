@@ -11,49 +11,42 @@
 #include "../include/reader.h"
 #include "../include/student.hpp"
 
-using std::cerr;
-using std::cout;
-using std::exception;
-using std::ifstream;
-using std::istringstream;
-using std::runtime_error;
-using std::string;
-using std::vector;
-
-bool read_students(vector<Student> &students) {
-    ifstream ifs;
+bool read_students(std::vector<Student> &students) {
+    std::ifstream ifs;
     bool is_read = false;
 
     try {
         ifs.open(STUDENTS_FILE);
         if (!ifs.is_open()) {
-            throw runtime_error("Failed to open: " + STUDENTS_FILE);
+            throw std::runtime_error("Failed to open: " + STUDENTS_FILE);
         }
 
-        Student student;
-        string student_info;
+        int num, kor, eng, math;
+        std::string name;
+
+        std::string student_info;
 
         // each line from file to studentInfo
         while (getline(ifs, student_info)) {
             // parse line into student fields using string stream
-            istringstream iss(student_info);
-            iss >> student.num >> student.name >> student.kor >> student.eng >>
-                student.math;
+            std::istringstream iss(student_info);
+            iss >> num >> name >> kor >> eng >> math;
 
-            // adds student object to students list
-            students.push_back(student);
+            // instantiate student object with arguments
+            Student student(num, name, kor, eng, math);
+            students.push_back(student); // adds student object to students list
             student_info = "";
         }
         ifs.close();
 
         if (students.empty()) {
-            cerr << "Error: " << STUDENTS_FILE << " is empty.\n";
+            std::cerr << "Error: " << STUDENTS_FILE << " is empty.\n";
         } else {
             is_read = true;
-            cout << "Successfully read: " << STUDENTS_FILE << "\n\n";
+            std::cout << "Successfully read: " << STUDENTS_FILE << "\n\n";
         }
-    } catch (const exception &e) {
-        cerr << "Error: " << e.what() << '\n';
+    } catch (const std::exception &e) {
+        std::cerr << "Error: " << e.what() << '\n';
     }
 
     return is_read;

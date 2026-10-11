@@ -13,7 +13,7 @@ void bubble_sort(std::vector<Student> &students) {
 
         for (int k = 0; k < n - j - 1; k++) {
             // high to low
-            if (students[k].tot < students[k + 1].tot) {
+            if (students[k].getTot() < students[k + 1].getTot()) {
                 // Student tmp = students[k];
                 // students[k] = students[k + 1];
                 // students[k + 1] = tmp;

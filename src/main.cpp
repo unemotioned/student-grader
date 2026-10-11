@@ -2,7 +2,6 @@
 
 #include <vector>
 
-#include "../include/grade.h"
 #include "../include/print_info.h"
 #include "../include/rank.h"
 #include "../include/reader.h"
@@ -10,21 +9,20 @@
 #include "../include/student.hpp"
 #include "../include/terminal.hpp"
 
-// import standard library to current namespace for unqualified(without prefix)
-// use
-using std::vector;
-
-vector<Student> students;
+std::vector<Student> students;
 
 int main() {
     clear_term();
 
     if (!read_students(students)) {
-        return 0;
+        return 1;
     }
-    grade_students(students);
+
     bubble_sort(students);
+    std::cout << "Sorted high to low\n\n";
+
     assign_ranks(students);
+    std::cout << "Ranks assigned\n\n";
 
     print_students_info(students);
 
