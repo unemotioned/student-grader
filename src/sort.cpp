@@ -1,15 +1,10 @@
-#include <iostream>
 #include <utility>
 #include <vector>
 
 #include "../include/sort.h"
 #include "../include/student.hpp"
 
-using std::cout;
-using std::swap;
-using std::vector;
-
-void bubble_sort(vector<Student> &students) {
+void bubble_sort(std::vector<Student> &students) {
     int n = students.size();
     bool swapped = false;
 
@@ -23,7 +18,7 @@ void bubble_sort(vector<Student> &students) {
                 // students[k] = students[k + 1];
                 // students[k + 1] = tmp;
 
-                swap(students[k], students[k + 1]);
+                std::swap(students[k], students[k + 1]);
                 swapped = true;
             }
         }
@@ -32,6 +27,4 @@ void bubble_sort(vector<Student> &students) {
             break;
         }
     }
-
-    cout << "Sorted high to low" << "\n\n";
 }
