@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "../include/sort.h"
-#include "../include/student.h"
+#include "../include/student.hpp"
 
 using std::cout;
 using std::swap;

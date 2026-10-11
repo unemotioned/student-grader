@@ -1,7 +1,7 @@
 #include <vector>
 
 #include "../include/rank.h"
-#include "../include/student.h"
+#include "../include/student.hpp"
 
 using std::vector;
 

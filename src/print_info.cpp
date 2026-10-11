@@ -2,7 +2,7 @@
 #include <vector>
 
 #include "../include/print_info.h"
-#include "../include/student.h"
+#include "../include/student.hpp"
 
 using std::cout;
 using std::vector;

@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "../include/grade.h"
-#include "../include/student.h"
+#include "../include/student.hpp"
 
 using std::cout;
 using std::round;

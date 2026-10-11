@@ -2,6 +2,6 @@
 
 #include <vector>
 
-#include "student.h"
+#include "student.hpp"
 
 void assign_ranks(std::vector<Student> &students);

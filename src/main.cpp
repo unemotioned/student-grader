@@ -7,8 +7,8 @@
 #include "../include/rank.h"
 #include "../include/reader.h"
 #include "../include/sort.h"
-#include "../include/student.h"
-#include "../include/terminal.h"
+#include "../include/student.hpp"
+#include "../include/terminal.hpp"
 
 // import standard library to current namespace for unqualified(without prefix)
 // use

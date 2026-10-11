@@ -3,6 +3,6 @@
 #include <iostream>
 #include <vector>
 
-#include "student.h"
+#include "student.hpp"
 
 void print_students_info(std::vector<Student> &students);

@@ -6,6 +6,6 @@
 
 #include <vector>
 
-#include "student.h"
+#include "student.hpp"
 
 void bubble_sort(std::vector<Student> &students);
