@@ -4,4 +4,4 @@
 
 #include "student.hpp"
 
-void class_statistic(std::vector<Student> &students);
+void class_statistic(const std::vector<Student> &students);

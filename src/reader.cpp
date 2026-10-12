@@ -5,36 +5,32 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <vector>
 
 #include "../include/reader.h"
 #include "../include/student.hpp"
 
-std::vector<Student> read_students(const std::string file) {
-    std::ifstream ifs;
+std::vector<Student> read_students(const std::string &file) {
     std::vector<Student> students;
 
     try {
+        std::ifstream ifs;
         ifs.open(file);
         if (!ifs.is_open()) {
             throw std::runtime_error("Failed to open: " + file);
         }
 
-        int num, kor, eng, math;
-        std::string name;
-
         std::string student_info;
-
-        // each line from file to studentInfo
+        // read each line from file and assign to student_info
         while (getline(ifs, student_info)) {
-            // parse line into student fields using string stream
+            int num = 0, kor = 0, eng = 0, math = 0;
+            std::string name;
+
+            // separate by space and assign to variables
             std::istringstream iss(student_info);
             iss >> num >> name >> kor >> eng >> math;
 
-            // instantiate student object with arguments
             Student student(num, name, kor, eng, math);
-            students.push_back(student); // adds student object to students list
-            student_info = "";
+            students.push_back(student);
         }
         ifs.close();
 

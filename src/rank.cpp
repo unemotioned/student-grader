@@ -3,17 +3,17 @@
 #include "../include/rank.h"
 #include "../include/student.hpp"
 
-void assign_ranks(std::vector<Student> &s) {
+void assign_ranks(std::vector<Student> &students) {
     // Competition ranking:
     // same score = same rank
     // next rank skips tied positions
-    s[0].setRank(1);
+    students[0].set_rank(1);
 
-    for (size_t i = 1; i < s.size(); i++) {
-        if (s[i - 1].getTot() == s[i].getTot()) {
-            s[i].setRank(s[i - 1].getRank());
+    for (size_t i = 1; i < students.size(); i++) {
+        if (students[i - 1].get_tot() == students[i].get_tot()) {
+            students[i].set_rank(students[i - 1].get_rank());
         } else {
-            s[i].setRank(i + 1);
+            students[i].set_rank(static_cast<int>(i) + 1);
         }
     }
 }

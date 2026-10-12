@@ -1,6 +1,8 @@
 #pragma once
 
+#include <cmath>
 #include <string>
+#include <utility>
 
 class Student {
   private:
@@ -15,48 +17,48 @@ class Student {
     int rank;
 
   public:
-    Student() {}
+    Student() = default;
 
     Student(int num, std::string name, int kor, int eng, int math) {
         this->num = num;
-        this->name = name;
+        this->name = std::move(name);
         this->kor = kor;
         this->eng = eng;
         this->math = math;
 
-        setTot(kor, eng, math);
+        set_tot(kor, eng, math);
     }
 
-    void setNum(int num) { this->num = num; }
-    int getNum() { return num; }
+    void set_num(int num) { this->num = num; }
+    [[nodiscard]] int get_num() const { return num; }
 
-    void setName(std::string name) { this->name = name; }
-    std::string getName() { return name; }
+    void set_name(std::string name) { this->name = std::move(name); }
+    [[nodiscard]] std::string get_name() const { return name; }
 
-    void setKor(int kor) { this->kor = kor; }
-    int getKor() { return kor; }
+    void set_kor(int kor) { this->kor = kor; }
+    [[nodiscard]] int get_kor() const { return kor; }
 
-    void setEng(int eng) { this->eng = eng; }
-    int getEng() { return eng; }
+    void set_eng(int eng) { this->eng = eng; }
+    [[nodiscard]] int get_eng() const { return eng; }
 
-    void setMath(int math) { this->math = math; }
-    int getMath() { return math; }
+    void set_math(int math) { this->math = math; }
+    [[nodiscard]] int get_math() const { return math; }
 
-    void setTot(int kor, int eng, int math) {
+    void set_tot(int kor, int eng, int math) {
         this->tot = kor + eng + math;
-        setAvg(tot);
+        set_avg(tot);
     }
-    int getTot() { return tot; }
+    [[nodiscard]] int get_tot() const { return tot; }
 
-    void setAvg(int tot) {
+    void set_avg(int tot) {
         this->avg =
             std::round((static_cast<float>(tot) / 3.0f) * 100.0f) / 100.0f;
 
-        setGrade(avg);
+        set_grade(avg);
     }
-    float getAvg() { return avg; }
+    [[nodiscard]] float get_avg() const { return avg; }
 
-    void setGrade(float avg) {
+    void set_grade(float avg) {
         if (avg >= 90.0) {
             grade = 'A';
         } else if (avg >= 80.0) {
@@ -69,8 +71,8 @@ class Student {
             grade = 'F';
         }
     }
-    char getGrade() { return grade; }
+    [[nodiscard]] char get_grade() const { return grade; }
 
-    void setRank(int rank) { this->rank = rank; }
-    int getRank() { return rank; }
+    void set_rank(int rank) { this->rank = rank; }
+    [[nodiscard]] int get_rank() const { return rank; }
 };

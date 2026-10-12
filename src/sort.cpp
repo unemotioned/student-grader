@@ -5,7 +5,7 @@
 #include "../include/student.hpp"
 
 void bubble_sort(std::vector<Student> &students) {
-    int size = students.size();
+    const int size = static_cast<int>(students.size());
     bool swapped = false;
 
     for (int j = 0; j < size - 1; j++) {
@@ -13,7 +13,7 @@ void bubble_sort(std::vector<Student> &students) {
 
         for (int k = 0; k < size - j - 1; k++) {
             // high to low
-            if (students[k].getTot() < students[k + 1].getTot()) {
+            if (students[k].get_tot() < students[k + 1].get_tot()) {
                 // Student tmp = students[k];
                 // students[k] = students[k + 1];
                 // students[k + 1] = tmp;

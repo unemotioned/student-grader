@@ -5,4 +5,4 @@
 
 #include "student.hpp"
 
-std::vector<Student> read_students(const std::string file);
+std::vector<Student> read_students(const std::string &file);

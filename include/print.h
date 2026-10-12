@@ -4,4 +4,4 @@
 
 #include "student.hpp"
 
-void print_table(std::vector<Student> &students);
+void print_table(const std::vector<Student> &students);

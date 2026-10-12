@@ -1,6 +1,7 @@
 #include <format>
 #include <iostream>
 #include <string>
+#include <string_view>
 #include <vector>
 
 #include "../include/box_chars.hpp"
@@ -8,30 +9,31 @@
 #include "../include/student.hpp"
 
 [[nodiscard]]
-std::vector<int> calc_each_cells_width(std::vector<Student> &students);
-std::string gen_table_head(std::vector<int> &widths);
-std::string gen_row(std::vector<int> &widths, Student s);
-std::string gen_table_hr(std::vector<int> &widths);
-std::string gen_border_top(std::vector<int> &widths);
-std::string gen_border_bot(std::vector<int> &widths);
+static std::vector<int>
+calc_each_cells_width(const std::vector<Student> &students);
+static std::string gen_table_head(const std::vector<int> &widths);
+static std::string gen_row(const std::vector<int> &widths, const Student &s);
+static std::string gen_table_hr(const std::vector<int> &widths);
+static std::string gen_border_top(const std::vector<int> &widths);
+static std::string gen_border_bot(const std::vector<int> &widths);
 
-const std::string TH_NUM = "No.";
-const std::string TH_NAME = "Name";
-const std::string TH_KOR = "Korean";
-const std::string TH_ENG = "English";
-const std::string TH_MATH = "Math";
-const std::string TH_TOT = "Total";
-const std::string TH_AVG = "Average";
-const std::string TH_GRADE = "Grade";
-const std::string TH_RANK = "Rank";
+constexpr std::string_view th_num = "No.";
+constexpr std::string_view th_name = "Name";
+constexpr std::string_view th_kor = "Korean";
+constexpr std::string_view th_eng = "English";
+constexpr std::string_view th_math = "Math";
+constexpr std::string_view th_tot = "Total";
+constexpr std::string_view th_avg = "Average";
+constexpr std::string_view th_grade = "Grade";
+constexpr std::string_view th_rank = "Rank";
 
-void print_table(std::vector<Student> &students) {
-    std::vector<int> each_cells_width = calc_each_cells_width(students);
+void print_table(const std::vector<Student> &students) {
+    const std::vector<int> each_cells_width = calc_each_cells_width(students);
 
     std::cout << gen_border_top(each_cells_width) << '\n';
     std::cout << gen_table_head(each_cells_width) << '\n';
     std::cout << gen_table_hr(each_cells_width) << '\n';
-    std::string table_hr = gen_table_hr(each_cells_width);
+    const std::string table_hr = gen_table_hr(each_cells_width);
 
     for (size_t i = 0; i < students.size(); i++) {
         std::cout << gen_row(each_cells_width, students[i]) << '\n';
@@ -44,36 +46,36 @@ void print_table(std::vector<Student> &students) {
     std::cout << gen_border_bot(each_cells_width) << '\n';
 }
 
-std::string gen_row(std::vector<int> &widths, Student s) {
+std::string gen_row(const std::vector<int> &widths, const Student &s) {
     std::string grade;
-    grade.push_back(s.getGrade());
+    grade.push_back(s.get_grade());
 
-    std::string cells[] = {
-        std::to_string(s.getNum()),    s.getName(),
-        std::to_string(s.getKor()),    std::to_string(s.getEng()),
-        std::to_string(s.getMath()),   std::to_string(s.getTot()),
-        std::format("{}", s.getAvg()), grade,
-        std::to_string(s.getRank()),
+    const std::string cells[] = {
+        std::to_string(s.get_num()),    s.get_name(),
+        std::to_string(s.get_kor()),    std::to_string(s.get_eng()),
+        std::to_string(s.get_math()),   std::to_string(s.get_tot()),
+        std::format("{}", s.get_avg()), grade,
+        std::to_string(s.get_rank()),
     };
 
-    int cell_len[] = {
-        (int)std::to_string(s.getNum()).length(),
-        (int)s.getName().size(),
-        (int)std::to_string(s.getKor()).length(),
-        (int)std::to_string(s.getEng()).length(),
-        (int)std::to_string(s.getMath()).length(),
-        (int)std::to_string(s.getTot()).length(),
-        (int)std::format("{}", s.getAvg()).length(),
+    const int cell_len[] = {
+        static_cast<int>(std::to_string(s.get_num()).length()),
+        static_cast<int>(s.get_name().size()),
+        static_cast<int>(std::to_string(s.get_kor()).length()),
+        static_cast<int>(std::to_string(s.get_eng()).length()),
+        static_cast<int>(std::to_string(s.get_math()).length()),
+        static_cast<int>(std::to_string(s.get_tot()).length()),
+        static_cast<int>(std::format("{}", s.get_avg()).length()),
         1,
-        (int)std::to_string(s.getRank()).length(),
+        static_cast<int>(std::to_string(s.get_rank()).length()),
     };
 
-    std::string header = BOX_V;
+    std::string header{BOX_V};
 
     for (size_t j = 0; j < widths.size(); j++) {
-        int extra = widths[j] - cell_len[j];
-        int padding = (extra) / 2;
-        int remainder = (extra) % 2;
+        const int extra = widths[j] - cell_len[j];
+        const int padding = extra / 2;
+        const int remainder = extra % 2;
 
         for (int k = 0; k < padding; k++) {
             header.append(" ");
@@ -92,24 +94,26 @@ std::string gen_row(std::vector<int> &widths, Student s) {
     return header;
 }
 
-std::string gen_table_head(std::vector<int> &widths) {
-    const std::string headers[] = {
-        TH_NUM, TH_NAME, TH_KOR,   TH_ENG,  TH_MATH,
-        TH_TOT, TH_AVG,  TH_GRADE, TH_RANK,
+std::string gen_table_head(const std::vector<int> &widths) {
+    constexpr std::string_view headers[] = {
+        th_num, th_name, th_kor,   th_eng,  th_math,
+        th_tot, th_avg,  th_grade, th_rank,
     };
 
-    const int header_lengths[] = {
-        (int)TH_NUM.length(), (int)TH_NAME.length(),  (int)TH_KOR.length(),
-        (int)TH_ENG.length(), (int)TH_MATH.length(),  (int)TH_TOT.length(),
-        (int)TH_AVG.length(), (int)TH_GRADE.length(), (int)TH_RANK.length(),
+    constexpr int header_lengths[] = {
+        static_cast<int>(th_num.length()),  static_cast<int>(th_name.length()),
+        static_cast<int>(th_kor.length()),  static_cast<int>(th_eng.length()),
+        static_cast<int>(th_math.length()), static_cast<int>(th_tot.length()),
+        static_cast<int>(th_avg.length()),  static_cast<int>(th_grade.length()),
+        static_cast<int>(th_rank.length()),
     };
 
-    std::string header = BOX_V;
+    std::string header{BOX_V};
 
     for (size_t j = 0; j < widths.size(); j++) {
-        int extra = widths[j] - header_lengths[j];
-        int padding = (extra) / 2;
-        int remainder = (extra) % 2;
+        const int extra = widths[j] - header_lengths[j];
+        const int padding = extra / 2;
+        const int remainder = extra % 2;
 
         for (int k = 0; k < padding + remainder; k++) {
             header.append(" ");
@@ -128,8 +132,8 @@ std::string gen_table_head(std::vector<int> &widths) {
     return header;
 }
 
-std::string gen_table_hr(std::vector<int> &widths) {
-    std::string border_top = BOX_LT;
+std::string gen_table_hr(const std::vector<int> &widths) {
+    std::string border_top{BOX_LT};
 
     for (size_t j = 0; j < widths.size(); j++) {
         for (int k = 0; k < widths[j]; k++) {
@@ -144,8 +148,8 @@ std::string gen_table_hr(std::vector<int> &widths) {
     return border_top;
 }
 
-std::string gen_border_bot(std::vector<int> &widths) {
-    std::string border_top = BOX_BL;
+std::string gen_border_bot(const std::vector<int> &widths) {
+    std::string border_top{BOX_BL};
 
     for (size_t j = 0; j < widths.size(); j++) {
         for (int k = 0; k < widths[j]; k++) {
@@ -160,8 +164,8 @@ std::string gen_border_bot(std::vector<int> &widths) {
     return border_top;
 }
 
-std::string gen_border_top(std::vector<int> &widths) {
-    std::string border_top = BOX_TL;
+std::string gen_border_top(const std::vector<int> &widths) {
+    std::string border_top{BOX_TL};
 
     for (size_t j = 0; j < widths.size(); j++) {
         for (int k = 0; k < widths[j]; k++) {
@@ -176,25 +180,32 @@ std::string gen_border_top(std::vector<int> &widths) {
     return border_top;
 }
 
-std::vector<int> calc_each_cells_width(std::vector<Student> &students) {
-    int num_len = std::to_string(students[0].getNum()).length();
-    int name_len = TH_NAME.length();
-    int kor_len = TH_KOR.length();
-    int eng_len = TH_ENG.length();
-    int math_len = TH_MATH.length();
-    int tot_len = TH_TOT.length();
-    int avg_len = TH_AVG.length();
-    int grade_len = TH_GRADE.length();
-    int rank_len = TH_RANK.length();
+std::vector<int> calc_each_cells_width(const std::vector<Student> &students) {
+    const int num_len =
+        static_cast<int>(std::to_string(students[0].get_num()).length());
+    int name_len = th_name.length();
+    int kor_len = th_kor.length();
+    int eng_len = th_eng.length();
+    int math_len = th_math.length();
+    int tot_len = th_tot.length();
+    int avg_len = th_avg.length();
+    constexpr int grade_len = th_grade.length();
+    int rank_len = th_rank.length();
 
-    for (Student &s : students) {
-        int s_name_len = s.getName().size();
-        int s_kor_len = std::to_string(s.getKor()).length();
-        int s_eng_len = std::to_string(s.getEng()).length();
-        int s_math_len = std::to_string(s.getMath()).length();
-        int s_tot_len = std::to_string(s.getTot()).length();
-        int s_avg_len = std::format("{}", s.getAvg()).length();
-        int s_rank_len = std::to_string(s.getRank()).length();
+    for (const Student &s : students) {
+        const int s_name_len = static_cast<int>(s.get_name().length());
+        const int s_kor_len =
+            static_cast<int>(std::to_string(s.get_kor()).length());
+        const int s_eng_len =
+            static_cast<int>(std::to_string(s.get_eng()).length());
+        const int s_math_len =
+            static_cast<int>(std::to_string(s.get_math()).length());
+        const int s_tot_len =
+            static_cast<int>(std::to_string(s.get_tot()).length());
+        const int s_avg_len =
+            static_cast<int>(std::format("{}", s.get_avg()).length());
+        const int s_rank_len =
+            static_cast<int>(std::to_string(s.get_rank()).length());
 
         if (name_len < s_name_len) {
             name_len = s_name_len;
@@ -225,12 +236,12 @@ std::vector<int> calc_each_cells_width(std::vector<Student> &students) {
         }
     }
 
-    std::vector<int> lengths = {num_len, name_len, kor_len,   eng_len, math_len,
-                                tot_len, avg_len,  grade_len, rank_len};
+    std::vector lengths = {num_len, name_len, kor_len,   eng_len, math_len,
+                           tot_len, avg_len,  grade_len, rank_len};
 
-    const int PAD = 2;
-    for (size_t i = 0; i < lengths.size(); i++) {
-        lengths[i] = lengths[i] + PAD;
+    for (int &length : lengths) {
+        constexpr int PAD = 2;
+        length = length + PAD;
     }
 
     return lengths;
