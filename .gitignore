@@ -1,3 +1,11 @@
 .DS_Store
 
 build/
+
+.idea/
+
+.vscode/**
+!.vscode/settings.json
+
+.zed/**
+!.zed/settings.json
