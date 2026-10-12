@@ -1,6 +1,8 @@
-// Copyright (c) 2025 UnEmotioneD
-
+#include <iostream>
 #include <vector>
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 #include "../include/config.hpp"
 #include "../include/print.h"
@@ -12,9 +14,14 @@
 #include "../include/terminal.hpp"
 
 int main() {
+    // to properly print the box drawing characters
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+#endif
+
     clear_term();
 
-    std::vector<Student> students = read_students(STUDENTS_FILE);
+    std::vector<Student> students = read_students(students_file);
     if (students.empty()) {
         return 1;
     }

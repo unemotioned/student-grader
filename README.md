@@ -8,7 +8,7 @@ Simple **C++** project to practice **OOP** and **Malloc**.
 - Calculate total and average
 - Assign grade
 - Rank by grade
-- Print results and output as json file
+- Print results and output as JSON file
 
 ## TODOs
 
@@ -57,6 +57,19 @@ make
 ```sh
 # --always-make
 make -B
+```
+
+### Windows
+
+How to run C/C++ on Windows:
+[unemotioned/tistory/mingw](https://github.com/unemotioned/tistory/blob/main/windows/mingw.md)
+
+- `-f`: Choose which makefile to use
+
+```powershell
+mingw32-make -f Makefile.win
+
+.\build\main.exe
 ```
 
 ---
