@@ -7,9 +7,9 @@ TARGET = $(BUILD_DIR)\main.exe
 
 all: $(TARGET)
 
-$(TARGET): $(SRC)
+$(TARGET): $(SRC) $(wildcard include/*.h include/*.hpp)
 	@if not exist "$(BUILD_DIR)" mkdir "$(BUILD_DIR)"
-	$(CXX) $(CXXFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $(SRC)
 
 clean:
 	@if exist "$(BUILD_DIR)" rmdir /S /Q "$(BUILD_DIR)"

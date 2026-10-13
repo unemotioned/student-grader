@@ -13,13 +13,13 @@ TARGET = $(BUILD_DIR)/main # output file
 all: $(TARGET)
 # to build $TARGET, use $SRC
 # if there're changes
-$(TARGET): $(SRC)
+$(TARGET): $(SRC) $(wildcard include/*.h include/*.hpp)
     # @: don't print command before execute
 	@mkdir -p $(BUILD_DIR)
     # $@: target being created
     # $<: first dependency only
     # $^: all dependencies
-	$(CXX) $(CXXFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $(SRC)
     # expands to:
     # g++ -Wall -Wextra -std=c++20 -o build/main src/main.cpp
 
