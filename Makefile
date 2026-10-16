@@ -2,7 +2,7 @@
 CXX = g++
 # enable common and additional warnings
 # compile using c++17 standard
-CXXFLAGS = -Wall -Wextra -std=c++17
+CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic -O2
 
 # SRC = src/main.cpp src/bubble_sort.cpp src/print_info.cpp # dependencies
 SRC = $(wildcard src/*.cpp)
@@ -23,10 +23,17 @@ $(TARGET): $(SRC)
     # expands to:
     # g++ -Wall -Wextra -std=c++17 -o build/main src/main.cpp
 
+run: $(TARGET)
+ifeq ($(OS),Windows_NT)
+	.\$(subst /,\,$(TARGET))
+else
+	./$(TARGET)
+endif
+
 # runs on `make clean` command
 clean:
 	@rm -rf $(BUILD_DIR)
 
 # phony == fake
 # run make command even if there is files named `all` or `clean`
-.PHONY: all clean
+.PHONY: all run clean
