@@ -24,19 +24,13 @@ Simple **C++** project to practice **OOP** and **Malloc**.
 - [ ] Use Malloc
 - [ ] Draw flow chart
 
----
+## Demo
 
-## Compile and Run
+> This is the only result though ...
 
-Requires a C++20 compiler and standard library with `std::format` support.
+![assets/demo.png](./assets/demo.png)
 
-```sh
-mkdir -p build
-
-g++ -std=c++20 ./src/*.cpp -o ./build/main
-
-./build/main
-```
+> Font: [Geist Mono](https://vercel.com/font?type=mono)
 
 ---
 
@@ -44,19 +38,23 @@ g++ -std=c++20 ./src/*.cpp -o ./build/main
 
 [Makefile Tutorial](https://makefiletutorial.com/)
 
-After making changes to source codes.
-
 ```sh
+# build the project
 make
 
-./build/main
+# build and run
+make run
+
+# remove build directory
+make clean
 ```
 
-### Force Rebuild
+### Force Build
 
 ```sh
-# --always-make
 make -B
+
+./build/main
 ```
 
 ### Windows
