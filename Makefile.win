@@ -1,0 +1,20 @@
+CXX = g++
+CXXFLAGS = -std=c++20 -Wall -Wextra -pedantic -O2
+
+SRC = $(wildcard src/*.cpp)
+BUILD_DIR = build
+TARGET = $(BUILD_DIR)\main.exe
+
+all: $(TARGET)
+
+$(TARGET): $(SRC) $(wildcard include/*.h include/*.hpp)
+	@if not exist "$(BUILD_DIR)" mkdir "$(BUILD_DIR)"
+	$(CXX) $(CXXFLAGS) -o $@ $(SRC)
+
+run: $(TARGET)
+	.\$(subst /,\,$(TARGET))
+
+clean:
+	@if exist "$(BUILD_DIR)" rmdir /S /Q "$(BUILD_DIR)"
+
+.PHONY: all run clean

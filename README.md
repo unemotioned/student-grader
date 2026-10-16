@@ -1,6 +1,6 @@
 # Student Grader
 
-Simple **C++** project to practice **OOP**.
+Simple **C++** project to practice **OOP** and **Malloc**.
 
 ## Features
 
@@ -8,7 +8,7 @@ Simple **C++** project to practice **OOP**.
 - Calculate total and average
 - Assign grade
 - Rank by grade
-- Print results and output as json file
+- Print results and output as JSON file
 
 ## TODOs
 
@@ -17,20 +17,23 @@ Simple **C++** project to practice **OOP**.
 - [x] Grade
 - [x] Sort
 - [x] Rank
-- [ ] Calculate class statistics
-- [ ] Print in table style
+- [x] Calculate class statistics
+- [x] Print in table style
 - [ ] Output JSON
 - [x] Refactor
+- [ ] Use Malloc
 - [ ] Draw flow chart
 
 ---
 
 ## Compile and Run
 
+Requires a C++20 compiler and standard library with `std::format` support.
+
 ```sh
 mkdir -p build
 
-g++ ./src/main.cpp -o ./build/main
+g++ -std=c++20 ./src/*.cpp -o ./build/main
 
 ./build/main
 ```
@@ -47,6 +50,26 @@ After making changes to source codes.
 make
 
 ./build/main
+```
+
+### Force Rebuild
+
+```sh
+# --always-make
+make -B
+```
+
+### Windows
+
+How to run C/C++ on Windows:
+[unemotioned/tistory/mingw](https://github.com/unemotioned/tistory/blob/main/windows/mingw.md)
+
+- `-f`: Choose which makefile to use
+
+```powershell
+mingw32-make -f Makefile.win
+
+.\build\main.exe
 ```
 
 ---

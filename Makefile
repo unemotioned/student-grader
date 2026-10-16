@@ -1,8 +1,8 @@
 # compiler to use
 CXX = g++
 # enable common and additional warnings
-# compile using c++17 standard
-CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic -O2
+# compile using c++20 standard
+CXXFLAGS = -std=c++20 -Wall -Wextra -pedantic -O2
 
 # SRC = src/main.cpp src/bubble_sort.cpp src/print_info.cpp # dependencies
 SRC = $(wildcard src/*.cpp)
@@ -13,22 +13,18 @@ TARGET = $(BUILD_DIR)/main # output file
 all: $(TARGET)
 # to build $TARGET, use $SRC
 # if there're changes
-$(TARGET): $(SRC)
+$(TARGET): $(SRC) $(wildcard include/*.h include/*.hpp)
     # @: don't print command before execute
 	@mkdir -p $(BUILD_DIR)
     # $@: target being created
     # $<: first dependency only
     # $^: all dependencies
-	$(CXX) $(CXXFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $(SRC)
     # expands to:
-    # g++ -Wall -Wextra -std=c++17 -o build/main src/main.cpp
+    # g++ -Wall -Wextra -std=c++20 -o build/main src/main.cpp
 
 run: $(TARGET)
-ifeq ($(OS),Windows_NT)
-	.\$(subst /,\,$(TARGET))
-else
 	./$(TARGET)
-endif
 
 # runs on `make clean` command
 clean:

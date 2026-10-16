@@ -5,56 +5,43 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <vector>
 
-#include "config.h"
-#include "reader.h"
-#include "student.h"
+#include "../include/reader.h"
+#include "../include/student.hpp"
 
-using std::cerr;
-using std::cout;
-using std::endl;
-using std::exception;
-using std::ifstream;
-using std::istringstream;
-using std::runtime_error;
-using std::vector;
-
-bool read_students(vector<Student> &students) {
-    ifstream ifs;
-    bool is_read = false;
+std::vector<Student> read_students(const std::string &file) {
+    std::vector<Student> students;
 
     try {
-        ifs.open(STUDENTS_FILE);
+        std::ifstream ifs;
+        ifs.open(file);
         if (!ifs.is_open()) {
-            throw runtime_error("Failed to open: " + STUDENTS_FILE);
+            throw std::runtime_error("Failed to open: " + file);
         }
 
-        Student student;
-        string student_info;
-
-        // each line from file to studentInfo
+        std::string student_info;
+        // read each line from file and assign to student_info
         while (getline(ifs, student_info)) {
-            // parse line into student fields using string stream
-            istringstream iss(student_info);
-            iss >> student.num >> student.name >> student.kor >> student.eng >>
-                student.math;
+            int num = 0, kor = 0, eng = 0, math = 0;
+            std::string name;
 
-            // adds student object to students list
+            // separate by space and assign to variables
+            std::istringstream iss(student_info);
+            iss >> num >> name >> kor >> eng >> math;
+
+            Student student(num, name, kor, eng, math);
             students.push_back(student);
-            student_info = "";
         }
         ifs.close();
 
         if (students.empty()) {
-            cerr << "Error: " << STUDENTS_FILE << " is empty." << endl;
+            std::cerr << "Error: " << file << " is empty.\n";
         } else {
-            is_read = true;
-            cout << "Successfully read: " << STUDENTS_FILE << "\n" << endl;
+            std::cout << "Successfully read: " << file << "\n\n";
         }
-    } catch (const exception &e) {
-        cerr << "Error: " << e.what() << endl;
+    } catch (const std::exception &e) {
+        std::cerr << "Error: " << e.what() << '\n';
     }
 
-    return is_read;
+    return students;
 }

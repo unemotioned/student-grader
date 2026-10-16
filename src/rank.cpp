@@ -1,21 +1,19 @@
 #include <vector>
 
-#include "student.h"
+#include "../include/rank.h"
+#include "../include/student.hpp"
 
-using std::vector;
-
-void assign_ranks(vector<Student> &students) {
-    int n = students.size();
-
+void assign_ranks(std::vector<Student> &students) {
     // Competition ranking:
     // same score = same rank
     // next rank skips tied positions
-    students[0].rank = 1;
-    for (int i = 1; i < n; i++) {
-        if (students[i - 1].tot == students[i].tot) {
-            students[i].rank = students[i - 1].rank;
+    students[0].set_rank(1);
+
+    for (size_t i = 1; i < students.size(); i++) {
+        if (students[i - 1].get_tot() == students[i].get_tot()) {
+            students[i].set_rank(students[i - 1].get_rank());
         } else {
-            students[i].rank = i + 1;
+            students[i].set_rank(static_cast<int>(i) + 1);
         }
     }
 }
