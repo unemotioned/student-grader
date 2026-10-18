@@ -28,7 +28,7 @@ Simple **C++** project to practice **OOP** and **Malloc**.
 
 > This is the only result though ...
 
-![archive/demo.png](./archive/demo.png)
+![assets/demo.png](./assets/demo.png)
 
 > Font: [Geist Mono](https://vercel.com/font?type=mono)
 
