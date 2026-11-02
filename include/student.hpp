@@ -29,26 +29,54 @@ class Student {
         set_tot(kor, eng, math);
     }
 
-    void set_num(int num) { this->num = num; }
-    [[nodiscard]] int get_num() const { return num; }
+    void set_num(int num) {
+        this->num = num;
+    }
+    [[nodiscard]]
+    int get_num() const {
+        return num;
+    }
 
-    void set_name(std::string name) { this->name = std::move(name); }
-    [[nodiscard]] std::string get_name() const { return name; }
+    void set_name(std::string name) {
+        this->name = std::move(name);
+    }
+    [[nodiscard]]
+    std::string get_name() const {
+        return name;
+    }
 
-    void set_kor(int kor) { this->kor = kor; }
-    [[nodiscard]] int get_kor() const { return kor; }
+    void set_kor(int kor) {
+        this->kor = kor;
+    }
+    [[nodiscard]]
+    int get_kor() const {
+        return kor;
+    }
 
-    void set_eng(int eng) { this->eng = eng; }
-    [[nodiscard]] int get_eng() const { return eng; }
+    void set_eng(int eng) {
+        this->eng = eng;
+    }
+    [[nodiscard]]
+    int get_eng() const {
+        return eng;
+    }
 
-    void set_math(int math) { this->math = math; }
-    [[nodiscard]] int get_math() const { return math; }
+    void set_math(int math) {
+        this->math = math;
+    }
+    [[nodiscard]]
+    int get_math() const {
+        return math;
+    }
 
     void set_tot(int kor, int eng, int math) {
         this->tot = kor + eng + math;
         set_avg(tot);
     }
-    [[nodiscard]] int get_tot() const { return tot; }
+    [[nodiscard]]
+    int get_tot() const {
+        return tot;
+    }
 
     void set_avg(int tot) {
         this->avg =
@@ -56,7 +84,10 @@ class Student {
 
         set_grade(avg);
     }
-    [[nodiscard]] float get_avg() const { return avg; }
+    [[nodiscard]]
+    float get_avg() const {
+        return avg;
+    }
 
     void set_grade(float avg) {
         if (avg >= 90.0) {
@@ -71,8 +102,16 @@ class Student {
             grade = 'F';
         }
     }
-    [[nodiscard]] char get_grade() const { return grade; }
+    [[nodiscard]]
+    char get_grade() const {
+        return grade;
+    }
 
-    void set_rank(int rank) { this->rank = rank; }
-    [[nodiscard]] int get_rank() const { return rank; }
+    void set_rank(int rank) {
+        this->rank = rank;
+    }
+    [[nodiscard]]
+    int get_rank() const {
+        return rank;
+    }
 };

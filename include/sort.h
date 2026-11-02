@@ -1,8 +1,7 @@
 #pragma once
 
-// Declare interface
-//  to allow function call from main.cpp
-//  and implemented by sort.cpp
+// Declare interface to allow function call from main.cpp and implement it by
+// sort.cpp
 
 #include <vector>
 

@@ -9,8 +9,8 @@
 #include "../include/student.hpp"
 
 [[nodiscard]]
-static std::vector<int>
-calc_each_cells_width(const std::vector<Student> &students);
+static std::vector<int> calc_each_cells_width(
+    const std::vector<Student> &students);
 static std::string gen_table_head(const std::vector<int> &widths);
 static std::string gen_row(const std::vector<int> &widths, const Student &s);
 static std::string gen_table_hr(const std::vector<int> &widths);
@@ -51,10 +51,14 @@ std::string gen_row(const std::vector<int> &widths, const Student &s) {
     grade.push_back(s.get_grade());
 
     const std::string cells[] = {
-        std::to_string(s.get_num()),    s.get_name(),
-        std::to_string(s.get_kor()),    std::to_string(s.get_eng()),
-        std::to_string(s.get_math()),   std::to_string(s.get_tot()),
-        std::format("{}", s.get_avg()), grade,
+        std::to_string(s.get_num()),
+        s.get_name(),
+        std::to_string(s.get_kor()),
+        std::to_string(s.get_eng()),
+        std::to_string(s.get_math()),
+        std::to_string(s.get_tot()),
+        std::format("{}", s.get_avg()),
+        grade,
         std::to_string(s.get_rank()),
     };
 
@@ -96,15 +100,26 @@ std::string gen_row(const std::vector<int> &widths, const Student &s) {
 
 std::string gen_table_head(const std::vector<int> &widths) {
     constexpr std::string_view headers[] = {
-        th_num, th_name, th_kor,   th_eng,  th_math,
-        th_tot, th_avg,  th_grade, th_rank,
+        th_num,
+        th_name,
+        th_kor,
+        th_eng,
+        th_math,
+        th_tot,
+        th_avg,
+        th_grade,
+        th_rank,
     };
 
     constexpr int header_lengths[] = {
-        static_cast<int>(th_num.length()),  static_cast<int>(th_name.length()),
-        static_cast<int>(th_kor.length()),  static_cast<int>(th_eng.length()),
-        static_cast<int>(th_math.length()), static_cast<int>(th_tot.length()),
-        static_cast<int>(th_avg.length()),  static_cast<int>(th_grade.length()),
+        static_cast<int>(th_num.length()),
+        static_cast<int>(th_name.length()),
+        static_cast<int>(th_kor.length()),
+        static_cast<int>(th_eng.length()),
+        static_cast<int>(th_math.length()),
+        static_cast<int>(th_tot.length()),
+        static_cast<int>(th_avg.length()),
+        static_cast<int>(th_grade.length()),
         static_cast<int>(th_rank.length()),
     };
 
@@ -236,8 +251,15 @@ std::vector<int> calc_each_cells_width(const std::vector<Student> &students) {
         }
     }
 
-    std::vector lengths = {num_len, name_len, kor_len,   eng_len, math_len,
-                           tot_len, avg_len,  grade_len, rank_len};
+    std::vector lengths = {num_len,
+                           name_len,
+                           kor_len,
+                           eng_len,
+                           math_len,
+                           tot_len,
+                           avg_len,
+                           grade_len,
+                           rank_len};
 
     for (int &length : lengths) {
         constexpr int PAD = 2;
