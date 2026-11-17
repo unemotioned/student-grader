@@ -16,6 +16,7 @@
 int main() {
     // to properly print the box drawing characters
 #ifdef _WIN32
+    SetConsoleCP(CP_UTF8);
     SetConsoleOutputCP(CP_UTF8);
 #endif
 
