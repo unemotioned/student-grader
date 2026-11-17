@@ -1,5 +1,8 @@
 ---
+BasedOnStyle: LLVM
+UseTab: Never
 IndentWidth: 4
+ColumnLimit: 80
 
 # args and params one per line when exceeds col limit
 AllowAllArgumentsOnNextLine: false
